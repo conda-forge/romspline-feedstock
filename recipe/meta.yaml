@@ -10,22 +10,24 @@ source:
   sha256: 20d5788063853656c072dc208970a2d7ba19b376814418f9198b6e5a2d1ec1e6
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
   noarch: python
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - h5py
     - numpy
-    - python
+    - python >={{ python_min }}
     - scipy
     - pathlib2
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - romspline
 
